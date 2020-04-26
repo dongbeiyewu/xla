@@ -37,4 +37,4 @@ ndarray 内部由以下内容组成：
 
 ndarray 的内部结构:
 
-![1](https://github.com/erguixieshen/XLA/raw/master/week3/1.png)
+![1](https://github.com/dongbeiyewu/xla/raw/master/week3/pic/1.png)
