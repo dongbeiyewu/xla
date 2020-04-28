@@ -2,7 +2,7 @@
 
 ## simplification
 
-### Batch Normalization（BN）
+### Batch Normalization（添加BN层）
 
 深度网络参数训练时内部存在协方差偏移（Internal Covariate Shift）现象：深度网络内部数据分布在训练过程中发生变化的现象。
 
@@ -17,3 +17,22 @@ Batch normalization实现：
 $$ {x^{(k)}}  = \frac{x^{(k)}-E[x^{(k)}]}{\sqrt{Var[x^{(k)}]}}$$
 
 E（X）是输入样本X的期望，Var是输入样本X的方差。注意，对于一个d维的输入样本X=（x1,x2,....xd），要对某一层所有的维度一起进行零均值化处理，计算量大，且部分地方不可导，因此，这里的是针对每个维度k分别处理。
+
+## algsimp优化
+## zero_sized_hlo_eliminatioin优化
+
+## dynamic-index-splitter优化
+
+## gpu_hlo_support_checker
+
+## CallInliner 优化
+
+## dot_decomposer优化
+
+## convolution-group-converter优化
+
+## stable-sort-expander
+
+##  element_type_converter
+
+## simplification
