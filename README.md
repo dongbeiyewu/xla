@@ -16,4 +16,3 @@
 - [x] [llvm优化](https://github.com/dongbeiyewu/xla/blob/master/week3/%E4%BC%98%E5%8C%96.md)
 ## week4
 - [ ] [xla ir 优化]()
-- [ ] 
