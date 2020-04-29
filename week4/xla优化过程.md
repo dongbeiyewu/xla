@@ -40,23 +40,9 @@ Batch normalization解决的问题：
 仅仅使用上面的归一化公式，对网络某一层A的输出数据做归一化，然后送入网络下一层B，这样是会影响到本层网络A所学习到的特征的
 引入了可学习参数γ、β
 
+![1](https://github.com/dongbeiyewu/xla/raw/master/week4/pic/7.png)
+
 对于神经网络中的第L层
 
-## algsimp优化
-## zero_sized_hlo_eliminatioin优化
+![1](https://github.com/dongbeiyewu/xla/raw/master/week4/pic/8.png)
 
-## dynamic-index-splitter优化
-
-## gpu_hlo_support_checker
-
-## CallInliner 优化
-
-## dot_decomposer优化
-
-## convolution-group-converter优化
-
-## stable-sort-expander
-
-##  element_type_converter
-
-## simplification
