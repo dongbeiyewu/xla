@@ -13,13 +13,19 @@
 Batch normalization解决的问题：
 解决的问题是梯度消失与梯度爆炸。
 关于梯度消失，以sigmoid函数为例子，sigmoid函数使得输出在[0,1]之间。
+
 ![1](https://github.com/dongbeiyewu/xla/raw/master/week4/pic/1.png)
 
 事实上x到了一定大小，经过sigmoid函数的输出范围就很小了，参考下图
+
 ![1](https://github.com/dongbeiyewu/xla/raw/master/week4/pic/2.png)
-如果输入很大，其对应的斜率就很小，我们知道，其斜率（梯度）在反向传播中是权值学习速率。所以就会出现如下的问题，
+
+如果输入很大，其对应的斜率就很小，我们知道，其斜率（梯度）在反向传播中是权值学习速率。所以就会出现如下的问题
+
 ![1](https://github.com/dongbeiyewu/xla/raw/master/week4/pic/3.png)
+
 在深度网络中，如果网络的激活输出很大，其梯度就很小，学习速率就很慢。假设每层学习梯度都小于最大值0.25，网络有n层，因为链式求导的原因，第一层的梯度小于0.25的n次方，所以学习速率就慢，对于最后一层只需对自身求导1次，梯度就大，学习速率就快。
+
 这会造成的影响是在一个很大的深度网络中，浅层基本不学习，权值变化小，后面几层一直在学习，结果就是，后面几层基本可以表示整个网络，失去了深度的意义。
 
 关于梯度爆炸，根据链式求导法，
@@ -28,6 +34,9 @@ Batch normalization解决的问题：
 
 对每个特征进行独立的normalization。
 第j个维度，传入m个训练样本
+
+![1](https://github.com/dongbeiyewu/xla/raw/master/week4/pic/4.png)
+
 仅仅使用上面的归一化公式，对网络某一层A的输出数据做归一化，然后送入网络下一层B，这样是会影响到本层网络A所学习到的特征的
 引入了可学习参数γ、β
 
