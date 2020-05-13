@@ -24,5 +24,6 @@ with jit_scope():
 with tf.device("/job:localhost/replica:0/task:0/device:XLA_GPU:0"):
   output = tf.add(input1, input2)
 ```
-
+### 常规计算图构建
+![]([pic/3.png](https://github.com/dongbeiyewu/xla/raw/master/week5/pic/2.png))
 ## aot方式如何选择pass
