@@ -25,5 +25,32 @@ with tf.device("/job:localhost/replica:0/task:0/device:XLA_GPU:0"):
   output = tf.add(input1, input2)
 ```
 ### 常规计算图构建
-![]([pic/3.png](https://github.com/dongbeiyewu/xla/raw/master/week5/pic/2.png))
-## aot方式如何选择pass
+![]([pic/3.png](https://github.com/dongbeiyewu/xla/raw/master/week5/pic/3.png))
+
+### 接口层的设置对内核中计算图的影响
+graph在运行前，需要经过一系列优化和重构。其中一步涉及到类：tensorflow.OptimizationPassRegistry，此类可以运行其中注册的tensorflow.GraphOptimizationPass的子类，每一个子类都是实现了一种graph的优化和重构的逻辑。XLA JIT 相关的Graph优化和重构，也是通过这个入口来执行的。
+
+JIT相关的[tensorflow.GraphOptimizationPass](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/compiler/jit/jit_compilation_pass_registration.cc)
+
+可以看到JIT编译相关的tensorflow.GraphOptimizationPass有三个：
+
+### tensorflow.MarkForCompilationPass：
+上面提到的开启JIT的三种设置方式，就是在此类中进行检查的。通过检查这些设置，此类首先会挑选出所有开启JIT并且目前版本支持JIT编译的节点，并且运行聚类分析，将这些等待JIT编译的节点分到若干个Cluster中，看一下下面的例子：
+### tensorflow.EncapsulateSubgraphsPass：
+
+这一步优化分三步，
+
+第一步 ：为上一个优化类MarkForCompilationPass mark形成的cluster分别创建对应的SubGraph对象。
+
+第二步：为每个SubGraph对象创建对应的FunctionDef，并将创建的FunctionDef添加到FunctionLibrary中。
+Function可以看做一个独立的计算图，node_def就是这个子图包含的所有节点。Function可以被实例化和调用，方式是向调用方的计算图中插入一个Call节点，这类节点的运算核(OpKernel)是CallOp:
+
+第三步：重新创建一张新的计算图，首先将原计算图中没有被mark的节点直接拷贝过来，然后为每个SubGraph对应的Function创建CallOp节点，最后创建计算图中数据和控制依赖关系。
+### 3、tensorflow.BuildXlaLaunchOpsPass：
+经过EncapsulateSubgraphsPass优化的计算图中的function call节点全部替换成xlalaunch节点。
+
+JIT的关键就是这个xlalaunch节点。xlalaunch节点节点的运算名为”_XlaLaunch”,运算核是XlaLocalLaunchOp，按照运算核的要求它的父类也是OpKernel。
+
+XlaLocalLaunchOp对外响应Executor的调用请求，对内调用JIT相关API类编译和执行FunctionDef。当然对编译结果会有缓存操作，没必要每次调用都走一次编译过程：
+
+
