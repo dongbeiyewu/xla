@@ -25,7 +25,7 @@ with tf.device("/job:localhost/replica:0/task:0/device:XLA_GPU:0"):
   output = tf.add(input1, input2)
 ```
 ### 常规计算图构建
-![]([pic/3.png](https://github.com/dongbeiyewu/xla/raw/master/week5/pic/3.png))
+![](https://github.com/dongbeiyewu/xla/raw/master/week5/pic/3.png)
 
 ### 接口层的设置对内核中计算图的影响
 graph在运行前，需要经过一系列优化和重构。其中一步涉及到类：tensorflow.OptimizationPassRegistry，此类可以运行其中注册的tensorflow.GraphOptimizationPass的子类，每一个子类都是实现了一种graph的优化和重构的逻辑。XLA JIT 相关的Graph优化和重构，也是通过这个入口来执行的。
