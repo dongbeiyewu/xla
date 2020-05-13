@@ -51,13 +51,13 @@ JIT相关的[tensorflow.GraphOptimizationPass](https://github.com/tensorflow/ten
 
 这一步优化分三步，
 
-第一步 ：为上一个优化类MarkForCompilationPass mark形成的cluster分别创建对应的SubGraph对象。
++ 为上一个优化类MarkForCompilationPass mark形成的cluster分别创建对应的SubGraph对象。
 
-第二步：为每个SubGraph对象创建对应的FunctionDef，并将创建的FunctionDef添加到FunctionLibrary中。
++ 为每个SubGraph对象创建对应的FunctionDef，并将创建的FunctionDef添加到FunctionLibrary中。
 Function可以看做一个独立的计算图，node_def就是这个子图包含的所有节点。Function可以被实例化和调用，方式是向调用方的计算图中插入一个Call节点，这类节点的运算核(OpKernel)是CallOp:
 
-第三步：重新创建一张新的计算图，首先将原计算图中没有被mark的节点直接拷贝过来，然后为每个SubGraph对应的Function创建CallOp节点，最后创建计算图中数据和控制依赖关系。
-### 3、tensorflow.BuildXlaLaunchOpsPass：
++ 重新创建一张新的计算图，首先将原计算图中没有被mark的节点直接拷贝过来，然后为每个SubGraph对应的Function创建CallOp节点，最后创建计算图中数据和控制依赖关系。
+### tensorflow.BuildXlaLaunchOpsPass：
 经过EncapsulateSubgraphsPass优化的计算图中的function call节点全部替换成xlalaunch节点。
 
 JIT的关键就是这个xlalaunch节点。xlalaunch节点节点的运算名为”_XlaLaunch”,运算核是XlaLocalLaunchOp，按照运算核的要求它的父类也是OpKernel。
