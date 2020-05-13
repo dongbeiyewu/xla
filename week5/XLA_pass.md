@@ -27,6 +27,17 @@ with tf.device("/job:localhost/replica:0/task:0/device:XLA_GPU:0"):
 ### 常规计算图构建
 ![](https://github.com/dongbeiyewu/xla/raw/master/week5/pic/3.png)
 
+第一步、 TF_NewGraph会创建一个tensorflow.Graph对象，这就是计算图在TF内核中的表示；TF_NewGraph返回的结果是TF_Graph的指针，这个结构体是C API层对tensorflow.Graph的封装对象。
+
+第二步、 TF_NewOperation创建Graph中的Node，这一步中涉及的类比较多，tensorflow.NodeBuilder,tensorflow.NodeDefBuilder是为了构建tensorflow.NodeDef的工具类；为了最终构建Node对象，还需要通过tensorflow.OpRegistryInterface来找到Node绑定的OpDef。就像前面说的，Op是通过注册来提供给tf使用的。
+
+细心的用户发现，其实这步并没有创建Node对象，为什么呢？我们先往后看。
+
+第三步、设置Node的输入，设备以及属性，如图1中调用10到22。
+
+**最后，**TF_FinishOperation创建Node对象，并添加到Graph中。我们看到，实际的Node对象的创建是到这一步才发生的（调用26），并且根据节点的输入和控制输入，添加所需的数据边和流控制边。这也是为什么Node对象的创建放在最后一步的原因。
+
+
 ### 接口层的设置对内核中计算图的影响
 graph在运行前，需要经过一系列优化和重构。其中一步涉及到类：tensorflow.OptimizationPassRegistry，此类可以运行其中注册的tensorflow.GraphOptimizationPass的子类，每一个子类都是实现了一种graph的优化和重构的逻辑。XLA JIT 相关的Graph优化和重构，也是通过这个入口来执行的。
 
@@ -53,4 +64,16 @@ JIT的关键就是这个xlalaunch节点。xlalaunch节点节点的运算名为�
 
 XlaLocalLaunchOp对外响应Executor的调用请求，对内调用JIT相关API类编译和执行FunctionDef。当然对编译结果会有缓存操作，没必要每次调用都走一次编译过程：
 
+所以JIT编译流程为
 
+![](https://github.com/dongbeiyewu/xla/raw/master/week5/pic/4.png)
+
++ JIT调用方式的入口在运算核tensorflow.XlaLocalLaunchOp.Compute，tensorflow.XlaLocalLaunchOp是连接外部Graph的Executor和内部JIT调用的桥梁。
+
++ 如果被调用的计算图缓存不命中，则会调用xla.XlaCompile进行实际的编译。
+
++ 编译过程类似AOT，不同之处主要在于：首先这次调用的Client和Service的实现类是xla.LocalClient和xla.LocalService；其次，llvm ir到机器码的编译过程，这次是通过xla.cpu.SimpleOrcJIT完成的，它将llvm ir编译为可执行代码，并可被立即调用。
+
++ 可执行机器码后续会被封装为xla.LocalExecutale
+
++ 调用xla.LocalExecutable的如后函数Run.
