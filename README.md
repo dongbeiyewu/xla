@@ -15,5 +15,11 @@
 - [x] [Numpy](https://github.com/dongbeiyewu/xla/blob/master/week3/numpy.md)
 - [x] [llvm优化](https://github.com/dongbeiyewu/xla/blob/master/week3/%E4%BC%98%E5%8C%96.md)
 ## week4
-- [ ] [xla优化](https://github.com/dongbeiyewu/xla/blob/master/week4/xla%E4%BC%98%E5%8C%96.md)
-- [ ] [xla优化过程](https://github.com/dongbeiyewu/xla/blob/master/week4/xla%E4%BC%98%E5%8C%96%E8%BF%87%E7%A8%8B.md)
+- [x] [xla优化](https://github.com/dongbeiyewu/xla/blob/master/week4/xla%E4%BC%98%E5%8C%96.md)
+- [x] [xla优化过程](https://github.com/dongbeiyewu/xla/blob/master/week4/xla%E4%BC%98%E5%8C%96%E8%BF%87%E7%A8%8B.md)
+
+## week5
+- [x] [源码结构](https://github.com/dongbeiyewu/xla/blob/master/week5/%E6%BA%90%E4%BB%A3%E7%A0%81%E7%BB%93%E6%9E%84.md)
+- [x] [自定义调用HLO指令](https://github.com/dongbeiyewu/xla/blob/master/week5/%E8%87%AA%E5%AE%9A%E4%B9%89%E8%B0%83%E7%94%A8HLO%E6%8C%87%E4%BB%A4.md)
+- [x] [HLO_IR](https://github.com/dongbeiyewu/xla/blob/master/week5/HLO_IR.md)
+- [x] [XLA_PASS](https://github.com/dongbeiyewu/xla/blob/master/week5/XLA_pass.md)
