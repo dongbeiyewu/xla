@@ -2,7 +2,7 @@
 XLA的实现目录是tensorflow/compiler,目录结构如下：
 |目录名	|功能|
 | ------------- | ------------- |
-|aot	| aot编译相关代码，前面分析的tfcompile_tool代码就在这里|
+|aot	| aot编译相关代码，tfcompile_tool代码就在这里|
 |jit	| jit编译相关代码，例如xlalaunch节点的OpKenel、XLA相关的计算图重构，都在这里|
 |plugin	| 此模块看起来还没完成，暂不分析|
 |tests	| 测试代码 |
