@@ -15,8 +15,8 @@
 - [x] [Numpy](https://github.com/dongbeiyewu/xla/blob/master/week3/numpy.md)
 - [x] [llvm优化](https://github.com/dongbeiyewu/xla/blob/master/week3/%E4%BC%98%E5%8C%96.md)
 ## week4
-- [x] [xla优化](https://github.com/dongbeiyewu/xla/blob/master/week4/xla%E4%BC%98%E5%8C%96.md)
-- [x] [xla优化过程](https://github.com/dongbeiyewu/xla/blob/master/week4/xla%E4%BC%98%E5%8C%96%E8%BF%87%E7%A8%8B.md)
+- [x] [xla_ir](https://github.com/dongbeiyewu/xla/blob/master/week4/xla_ir%E8%8E%B7%E5%8F%96%E4%B8%8E%E8%A7%A3%E6%9E%90.md)
+- [x] [xla优化过程之BN](https://github.com/dongbeiyewu/xla/blob/master/week4/xla%E4%BC%98%E5%8C%96%E8%BF%87%E7%A8%8B.md)
 
 ## week5
 - [x] [源码结构](https://github.com/dongbeiyewu/xla/blob/master/week5/%E6%BA%90%E4%BB%A3%E7%A0%81%E7%BB%93%E6%9E%84.md)
