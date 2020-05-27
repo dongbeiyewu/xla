@@ -120,14 +120,17 @@ Writer 需要 include 该头文件，然后便可以使用这个类了。
  }
  ```
 运行 Writer 和 Reader 的结果如下：
->```
-> >writer 
-> >reader 
->101 
->Hello
+
 ```
-## 序列化和反序列化
-``` java
+>writer 
+>reader 
+101 
+Hello
+```
+
+### 序列化和反序列化
+
+```Java
 public class Test {
     public static void main(String[] args) throws IOException {
         //模拟将对象转成byte[]，方便传输
