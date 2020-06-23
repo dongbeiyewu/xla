@@ -18,5 +18,8 @@
     `pipeline.AddPass<Multisimple>(/*is_folat_mul=*/true);`
 - [ ] 编译tf，在tf环境下运行
 
-
+## 遇到的问题
+ 
+想将hlo文件保存，但是未成功
+编写.cc文件遇到问题
 
