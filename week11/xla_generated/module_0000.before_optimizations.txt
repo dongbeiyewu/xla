@@ -1,0 +1,13 @@
+HloModule cluster_6078579234811709973__.9
+
+ENTRY %cluster_6078579234811709973__.9 (arg0.1: f32[], arg1.2: f32[]) -> f32[] {
+  %arg0.1 = f32[] parameter(0), parameter_replication={false}, metadata={op_name="XLA_Args"}
+  %reshape.3 = f32[] reshape(f32[] %arg0.1)
+  %arg1.2 = f32[] parameter(1), parameter_replication={false}, metadata={op_name="XLA_Args"}
+  %reshape.4 = f32[] reshape(f32[] %arg1.2)
+  %multiply.5 = f32[] multiply(f32[] %reshape.3, f32[] %reshape.4), metadata={op_type="Mul" op_name="Mul"}
+  %reshape.6 = f32[] reshape(f32[] %multiply.5), metadata={op_name="XLA_Retvals"}
+  %tuple.7 = (f32[]) tuple(f32[] %reshape.6), metadata={op_name="XLA_Retvals"}
+  ROOT %get-tuple-element.8 = f32[] get-tuple-element((f32[]) %tuple.7), index=0, metadata={op_name="XLA_Retvals"}
+}
+

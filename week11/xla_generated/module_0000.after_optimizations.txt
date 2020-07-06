@@ -1,0 +1,8 @@
+HloModule cluster_6078579234811709973__.9
+
+ENTRY %cluster_6078579234811709973__.9 (arg0.1: f32[], arg1.2: f32[]) -> f32[] {
+  %arg0.1 = f32[] parameter(0), parameter_replication={false}, metadata={op_name="XLA_Args"}
+  %arg1.2 = f32[] parameter(1), parameter_replication={false}, metadata={op_name="XLA_Args"}
+  ROOT %multiply.5 = f32[] multiply(f32[] %arg0.1, f32[] %arg1.2), metadata={op_type="Mul" op_name="Mul"}
+}
+

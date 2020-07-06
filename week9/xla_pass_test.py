@@ -1,5 +1,5 @@
 '''
-本次任务的内容：实现一个xla HLO pass, 将两个浮点数的乘积自动四舍五入为整数
+本次任务的内容：实现一个xla HLO pass, 
 下面的脚本程序在正常的tensorflow环境下会报断言错误，如果pass实现正确，打开XLA后，该脚本应该能运行通过
 '''
 import warnings

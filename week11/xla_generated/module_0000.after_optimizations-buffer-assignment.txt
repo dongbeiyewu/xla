@@ -1,0 +1,7 @@
+BufferAssignment:
+allocation 0: 0x7efd4401c910, size 4, maybe-live-out:
+  multiply.5[](#2 @0) [0,4]: f32[]
+allocation 1: 0x7efd4401c9c0, size 4, parameter 0 at ShapeIndex {}:
+  arg0.1[](#0 @0) [0,4]: f32[]
+allocation 2: 0x7efd4401ca70, size 4, parameter 1 at ShapeIndex {}:
+  arg1.2[](#1 @0) [0,4]: f32[]

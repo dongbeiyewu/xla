@@ -1,0 +1,4 @@
+Total order:
+kKernel	%multiply.5 = f32[] multiply(f32[] %arg0.1, f32[] %arg1.2), metadata={op_type="Mul" op_name="Mul"}
+
+Dependencies:
