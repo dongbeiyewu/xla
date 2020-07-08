@@ -138,7 +138,7 @@ return changed;
 ```
 
 第二次编译报错
-![](pic/2.png)
+![](https://github.com/dongbeiyewu/xla/raw/master/week12/pic/2.png)
 
 更新
 
