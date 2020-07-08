@@ -186,4 +186,5 @@ tf_cc_test(
 ```
 重新编译
 
+![](https://github.com/dongbeiyewu/xla/raw/master/week12/pic/3.png)
 
