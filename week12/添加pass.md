@@ -188,3 +188,44 @@ tf_cc_test(
 
 ![](https://github.com/dongbeiyewu/xla/raw/master/week12/pic/3.png)
 
+在D:\Users\sunqiming\tensorflow\tensorflow-r1.14_add_pass\tensorflow\compiler\xla\service\cpu\BUILD第174行添加
+```h
+cc_library(
+    name = "rounding",
+    srcs = ["rounding.cc"],
+    hdrs = ["rounding.h"],
+    deps = [
+        ":hlo",
+        ":hlo_domain_map",
+        ":hlo_pass",
+        "//tensorflow/compiler/xla:literal",
+        "//tensorflow/compiler/xla:shape_util",
+        "//tensorflow/compiler/xla:types",
+        "//tensorflow/core:lib",
+        "@com_google_absl//absl/container:flat_hash_set",
+        "@com_google_absl//absl/container:inlined_vector",
+    ],
+)
+
+tf_cc_test(
+    name = "rounding_test",
+    srcs = ["rounding_test.cc"],
+    deps = [
+        ":cpu_plugin",
+        ":hlo",
+        ":hlo_cse",
+        ":hlo_matchers",
+        ":hlo_parser",
+        "//tensorflow/compiler/xla:literal",
+        "//tensorflow/compiler/xla:shape_util",
+        "//tensorflow/compiler/xla:types",
+        "//tensorflow/compiler/xla:util",
+        "//tensorflow/compiler/xla:xla_data_proto",
+        "//tensorflow/compiler/xla/tests:hlo_test_base",
+        "//tensorflow/compiler/xla/tests:literal_test_util",
+        "//tensorflow/compiler/xla/tests:test_utils",
+        "//tensorflow/core:lib",
+        "@com_google_absl//absl/memory",
+    ],
+)
+```
