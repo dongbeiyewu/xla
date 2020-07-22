@@ -17,14 +17,16 @@ os.environ["XLA_FLAGS"] = "--xla_dump_to=/mnt/d/pass --xla_dump_hlo_pass_re=.* -
 
 查看图
 
-![](pic/2.png)
+![](https://github.com/dongbeiyewu/xla/raw/master/week13/pic/2.png))
 
 比之前多了一个pass
 
-![](pic/3.png)
-![](pic/4.png)
+![](https://github.com/dongbeiyewu/xla/raw/master/week13/pic/3.png))
+![](https://github.com/dongbeiyewu/xla/raw/master/week13/pic/4.png)
 
 图中可以看到输出
 
 ## 对instruction与computation的操作
+
+
 
