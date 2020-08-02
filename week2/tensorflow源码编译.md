@@ -53,7 +53,7 @@ Bazel需要一个C ++编译器并解压缩才能工作：
 ## 下载 TensorFlow 源代码
 
 >`  git clone https://github.com/tensorflow/tensorflow.git`
-</br>
+
 >` cd tensorflow`
 
 
