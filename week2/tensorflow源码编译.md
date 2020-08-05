@@ -100,11 +100,11 @@ Bazel需要一个C ++编译器并解压缩才能工作：
 bazel build 命令创建名为 build_pip_package 的可执行程序，这个程序用于构建 pip 包。请执行以下命令在 /tmp/tensolflow_pkg 目录下创建一个 .whl 包。
 
 - 从release分支build:
->`./bazel-bin/tensorflow/tools/pip_package/build_pip_package /tmp/tensorflow_pkg`
+>`./bazel-bin/tensorflow/tools/pip_package/build_pip_package ./tmp/tensorflow_pkg`
 
 - 从master分支build则需要使用 --nightly_flag 以获得正确的依赖:
 
->`./bazel-bin/tensorflow/tools/pip_package/build_pip_package --nightly_flag /tmp/tensorflow_pkg`
+>`./bazel-bin/tensorflow/tools/pip_package/build_pip_package --nightly_flag ./tmp/tensorflow_pkg`
 
 ### 安装软件包
 
